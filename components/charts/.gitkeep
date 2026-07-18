@@ -1,0 +1,5 @@
+# Data-visualization components live here.
+#
+# Reserved for progress charts (volume over time, 1RM trends, streak
+# heatmaps, etc.). Chart theme tokens are already defined as --chart-1..5
+# in styles/globals.css. Intentionally left empty for the base scaffold.

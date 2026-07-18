@@ -1,0 +1,5 @@
+# Workout feature components live here.
+#
+# Reserved for the workout-tracking UI (session builder, exercise list,
+# set logger, rest timer, etc.). Intentionally left empty for now — the
+# workout screens are not part of this base scaffold.
