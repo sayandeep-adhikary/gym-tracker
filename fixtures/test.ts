@@ -1,11 +1,11 @@
 import { test as base, expect } from '@playwright/test';
 
-import { DashboardPage } from '../pages/DashboardPage';
-import { HomePage } from '../pages/HomePage';
-import { NavigationPage } from '../pages/NavigationPage';
-import { SettingsPage } from '../pages/SettingsPage';
-import { TimerPanel } from '../pages/TimerPanel';
-import { WorkoutPage } from '../pages/WorkoutPage';
+import { DashboardPage } from '../page-objects/DashboardPage';
+import { HomePage } from '../page-objects/HomePage';
+import { NavigationPage } from '../page-objects/NavigationPage';
+import { SettingsPage } from '../page-objects/SettingsPage';
+import { TimerPanel } from '../page-objects/TimerPanel';
+import { WorkoutPage } from '../page-objects/WorkoutPage';
 
 /**
  * Central test fixtures.
