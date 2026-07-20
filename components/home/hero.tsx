@@ -21,7 +21,7 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="grid items-center gap-10 lg:grid-cols-2">
+      <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         <div>
           <AnimatedBadge variant="primary" pulse>
             Push · Pull · Legs

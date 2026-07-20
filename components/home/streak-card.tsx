@@ -56,7 +56,7 @@ export function StreakCard() {
         </div>
       </div>
 
-      <div className="flex items-end justify-between gap-2">
+      <div className="flex items-end justify-between gap-1.5 sm:gap-2">
         {WEEK.map((day, index) => (
           <div key={index} className="flex flex-1 flex-col items-center gap-2">
             <motion.span
@@ -70,7 +70,7 @@ export function StreakCard() {
                 delay: index * 0.06,
               }}
               className={cn(
-                "flex size-8 items-center justify-center rounded-full text-xs font-semibold",
+                "flex size-7 items-center justify-center rounded-full text-xs font-semibold sm:size-8",
                 day.done
                   ? "bg-primary text-primary-foreground shadow-glow"
                   : "bg-secondary text-muted-foreground",

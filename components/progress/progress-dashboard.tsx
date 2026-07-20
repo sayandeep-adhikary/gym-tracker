@@ -207,7 +207,7 @@ export function ProgressDashboard() {
             <Skeleton key={index} className="h-20 rounded-2xl" />
           ))}
         </div>
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <Skeleton className="h-64 rounded-2xl" />
           <Skeleton className="h-64 rounded-2xl" />
         </div>
@@ -288,7 +288,7 @@ export function ProgressDashboard() {
 
       {/* Charts */}
       <Reveal delay={0.1}>
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle>This week</CardTitle>

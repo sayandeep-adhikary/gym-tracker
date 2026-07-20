@@ -33,7 +33,7 @@ export function HomeView() {
           title="At a glance"
           description="Today's session and your current momentum."
         />
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <Reveal className="h-full">
             <TodayWorkoutCard plan={plan} />
           </Reveal>

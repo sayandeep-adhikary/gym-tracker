@@ -40,7 +40,7 @@ export function FavoritesList() {
       />
 
       {!favorites.hydrated ? (
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {Array.from({ length: 4 }).map((_, index) => (
             <Skeleton key={index} className="h-40 rounded-2xl" />
           ))}
@@ -63,7 +63,7 @@ export function FavoritesList() {
           />
         </motion.div>
       ) : (
-        <motion.div layout className="grid gap-3 sm:grid-cols-2">
+        <motion.div layout className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <AnimatePresence mode="popLayout">
             {items.map((exercise) => (
               <motion.div

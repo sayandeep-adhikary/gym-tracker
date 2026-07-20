@@ -141,7 +141,7 @@ export function ExerciseSearch() {
           description="Try a different search term or clear your filters."
         />
       ) : (
-        <motion.div layout className="grid gap-3 sm:grid-cols-2">
+        <motion.div layout className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <AnimatePresence mode="popLayout">
             {results.map((exercise) => (
               <motion.div
