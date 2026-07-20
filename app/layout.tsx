@@ -37,10 +37,14 @@ export const metadata: Metadata = {
     description: SITE.description,
   },
   icons: {
-    icon: "/icon.svg",
-    apple: "/icon.svg",
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
   manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: SITE.name,
+    statusBarStyle: "default",
+  },
 };
 
 export const viewport: Viewport = {
