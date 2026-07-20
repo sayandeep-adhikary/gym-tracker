@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@/components/common/logo";
 import { HeaderAuth } from "@/components/layout/header-auth";
 import { PageContainer } from "@/components/layout/page-container";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { NAV_ITEMS } from "@/data/navigation";
 import { useScroll } from "@/hooks/use-scroll";
@@ -38,6 +39,7 @@ export function Header() {
         </h1>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <HeaderAuth />
           <Button asChild size="sm" className="hidden sm:inline-flex">
             <Link href="/workouts">

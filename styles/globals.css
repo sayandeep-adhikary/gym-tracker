@@ -14,8 +14,75 @@
  */
 
 @layer base {
-  :root,
+  /* Light theme (default) */
+  :root {
+    color-scheme: light;
+
+    /* Surfaces — bright, cool-neutral */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Brand — #3B82F6 primary */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Brand accent */
+    --accent: 213 94% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 94%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 94%;
+    --muted-foreground: 215 16% 42%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --success: 152 69% 38%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 32 95% 44%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Lines & focus */
+    --border: 214 32% 88%;
+    --input: 214 32% 85%;
+    --ring: 217 91% 60%;
+
+    /* Glassmorphism */
+    --glass: 0 0% 100%;
+    --glass-border: 214 32% 88%;
+
+    /* Push / Pull / Legs category accents */
+    --push: 8 80% 52%;
+    --push-foreground: 0 0% 100%;
+    --pull: 199 90% 42%;
+    --pull-foreground: 0 0% 100%;
+    --legs: 32 95% 44%;
+    --legs-foreground: 0 0% 100%;
+
+    /* Data-viz palette (used by components/charts) */
+    --chart-1: 217 91% 60%;
+    --chart-2: 213 94% 58%;
+    --chart-3: 199 90% 46%;
+    --chart-4: 262 83% 62%;
+    --chart-5: 32 95% 50%;
+
+    /* Radius scale — generous, modern rounding */
+    --radius: 1rem;
+  }
+
+  /* Dark theme */
   .dark {
+    color-scheme: dark;
+
     /* Surfaces — almost-black, cool blue-tinted */
     --background: 222 24% 5%;
     --foreground: 210 20% 98%;

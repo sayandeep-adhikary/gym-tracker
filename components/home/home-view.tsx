@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import { Reveal } from "@/components/common/motion";
 import { Hero } from "@/components/home/hero";
 import { SplitPlanSelector } from "@/components/home/split-plan-selector";
@@ -15,17 +17,24 @@ import type { SplitPlanId } from "@/types";
  * localStorage) and distributes it to the split selector and today's workout.
  */
 export function HomeView() {
+  const router = useRouter();
   const [selectedId, setSelectedId] = useLocalStorage<SplitPlanId>(
     "gt:selected-split-plan",
     "5-day",
   );
   const plan = getSplitPlan(selectedId);
 
+  // Choosing a split saves it and jumps straight to that split's schedule.
+  const handleSelect = (id: SplitPlanId) => {
+    setSelectedId(id);
+    router.push("/workouts");
+  };
+
   return (
     <div className="space-y-12 lg:space-y-16">
       <Hero />
 
-      <SplitPlanSelector selected={selectedId} onSelect={setSelectedId} />
+      <SplitPlanSelector selected={selectedId} onSelect={handleSelect} />
 
       <section className="space-y-6">
         <SectionTitle

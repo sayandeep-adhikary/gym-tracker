@@ -116,7 +116,7 @@ export function ExerciseCard({
             <div className="min-w-0">
               <h3
                 className={cn(
-                  "truncate font-semibold leading-tight transition-colors",
+                  "line-clamp-2 font-semibold leading-tight transition-colors",
                   isDone && "text-muted-foreground line-through",
                 )}
               >

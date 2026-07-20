@@ -5,6 +5,7 @@ export { useFavorites } from "@/hooks/use-favorites";
 export { useLocalStorage } from "@/hooks/use-local-storage";
 export { useMounted } from "@/hooks/use-mounted";
 export { useScroll } from "@/hooks/use-scroll";
+export { useTheme } from "@/hooks/use-theme";
 export { useTilt } from "@/hooks/use-tilt";
 export { useWorkoutProgress } from "@/hooks/use-workout-progress";
 export { useWorkoutHistory } from "@/hooks/use-workout-history";

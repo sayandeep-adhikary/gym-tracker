@@ -5,7 +5,6 @@ import { Providers } from "@/components/common/providers";
 import { AppShell } from "@/components/layout/app-shell";
 import { SITE } from "@/lib/constants";
 import { fontVariables } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -46,19 +45,24 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: SITE.themeColor,
-  colorScheme: "dark",
+  colorScheme: "dark light",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
 };
 
+/**
+ * Applied before paint so the persisted theme is set with no flash of the wrong
+ * theme. Defaults to dark. Kept in sync afterwards by `ThemeProvider`.
+ */
+const themeScript = `try{var t=localStorage.getItem('gt:theme');if(t!=='light'&&t!=='dark')t='dark';var d=document.documentElement;d.classList.toggle('dark',t==='dark');d.style.colorScheme=t;}catch(e){document.documentElement.classList.add('dark');}`;
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={cn("dark", fontVariables)}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={fontVariables} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
         <Providers>
           <AppShell>{children}</AppShell>
