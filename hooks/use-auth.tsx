@@ -22,6 +22,7 @@ import {
 } from "firebase/auth";
 
 import { auth, isFirebaseConfigured } from "@/lib/firebase";
+import { ALL_STORAGE_KEYS } from "@/lib/storage-keys";
 
 interface AuthContextValue {
   /** The signed-in user, or null when signed out / not configured. */
@@ -130,7 +131,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       },
       logout: async () => {
         if (!auth) return;
+        // Sign out first so CloudSync detaches its Firestore listener, then wipe
+        // the local app data so the next person starts clean. The data lives in
+        // Firestore, so signing back in restores it. Clearing happens right
+        // before a hard reload (synchronously, no `await` gap) so no snapshot can
+        // re-populate localStorage and no empty push can reach the cloud. The
+        // theme preference is intentionally preserved (not an app-data key).
         await signOut(auth);
+        try {
+          for (const key of ALL_STORAGE_KEYS) {
+            window.localStorage.removeItem(key);
+          }
+        } catch {
+          // Ignore storage errors.
+        }
+        window.location.assign("/");
       },
     }),
     [user, loading],

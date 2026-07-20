@@ -55,7 +55,7 @@ function StatCard({
 }) {
   return (
     <Card>
-      <CardContent className="flex items-center gap-3 p-4">
+      <CardContent className="flex items-center gap-3 p-4 sm:p-5">
         <span
           className={cn(
             "flex size-11 shrink-0 items-center justify-center rounded-xl",
