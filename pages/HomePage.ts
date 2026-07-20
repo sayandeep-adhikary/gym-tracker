@@ -9,6 +9,7 @@ import { ROUTES } from '../utils/constants';
  * locators use accessible, user-facing queries (roles / labels / text) so they
  * stay stable as styling and animations change.
  */
+
 export class HomePage {
   readonly page: Page;
 
