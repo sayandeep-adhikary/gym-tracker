@@ -2,6 +2,7 @@ import type { Locator, Page } from '@playwright/test';
 
 import { ROUTES } from '../utils/constants';
 
+
 /**
  * Page Object for the Settings screen (`/settings`).
  *
