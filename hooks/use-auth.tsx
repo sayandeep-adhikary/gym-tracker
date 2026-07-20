@@ -90,7 +90,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     // Keep the session across reloads.
     void setPersistence(auth, browserLocalPersistence).catch(() => {});
-    const unsubscribe = onAuthStateChanged(auth, (nextUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (nextUser: User | null) => {
       setUser(nextUser);
       setLoading(false);
     });

@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { doc, onSnapshot, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  doc,
+  onSnapshot,
+  serverTimestamp,
+  setDoc,
+  type DocumentData,
+  type DocumentSnapshot,
+} from "firebase/firestore";
 
 import { useAuth } from "@/hooks/use-auth";
 import { CLOUD_FIELDS, FIELD_TO_KEY } from "@/lib/cloud-merge";
@@ -12,7 +19,7 @@ import { db } from "@/lib/firebase";
 const SYNC_EVENT = "gt:local-storage";
 const DEBOUNCE_MS = 700;
 
-const KEY_SET = new Set(Object.values(FIELD_TO_KEY));
+const KEY_SET = new Set<string>(Object.values(FIELD_TO_KEY));
 
 function readLocal(key: string): unknown {
   try {
@@ -65,29 +72,32 @@ export function CloudSync() {
       );
     };
 
-    const unsubscribe = onSnapshot(ref, (snapshot) => {
-      const remote = (snapshot.data() ?? {}) as Record<string, unknown>;
+    const unsubscribe = onSnapshot(
+      ref,
+      (snapshot: DocumentSnapshot<DocumentData>) => {
+        const remote = (snapshot.data() ?? {}) as Record<string, unknown>;
 
-      // Apply remote → local. The guard stops these writes from echoing back.
-      applyingRemote.current = true;
-      for (const field of CLOUD_FIELDS) {
-        const key = FIELD_TO_KEY[field];
-        const localValue = readLocal(key);
-        const merged = mergeField(field, localValue, remote[field] ?? null);
-        if (JSON.stringify(merged) !== JSON.stringify(localValue)) {
-          writeLocal(key, merged);
+        // Apply remote → local. The guard stops these writes from echoing back.
+        applyingRemote.current = true;
+        for (const field of CLOUD_FIELDS) {
+          const key = FIELD_TO_KEY[field];
+          const localValue = readLocal(key);
+          const merged = mergeField(field, localValue, remote[field] ?? null);
+          if (JSON.stringify(merged) !== JSON.stringify(localValue)) {
+            writeLocal(key, merged);
+          }
         }
-      }
-      applyingRemote.current = false;
+        applyingRemote.current = false;
 
-      // First snapshot after (re)connecting: push the merged result so any
-      // local-only data (e.g. workouts logged while signed out) reaches the
-      // cloud.
-      if (!pushedInitial) {
-        pushedInitial = true;
-        pushAll();
-      }
-    });
+        // First snapshot after (re)connecting: push the merged result so any
+        // local-only data (e.g. workouts logged while signed out) reaches the
+        // cloud.
+        if (!pushedInitial) {
+          pushedInitial = true;
+          pushAll();
+        }
+      },
+    );
 
     const onLocalChange = (event: Event) => {
       if (applyingRemote.current) return;
