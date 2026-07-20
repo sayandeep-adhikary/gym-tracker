@@ -295,6 +295,13 @@ export function SettingsView() {
               {SITE.description} All of your data is stored privately on your
               device — no account, no servers.
             </div>
+            <div className="border-t border-border p-5 text-sm text-muted-foreground">
+              Designed &amp; built by{" "}
+              <span className="font-semibold text-foreground">
+                Sayandeep Adhikary
+              </span>
+              .
+            </div>
           </Card>
         </div>
       </Reveal>
