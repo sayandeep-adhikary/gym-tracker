@@ -22,6 +22,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { Reveal } from "@/components/common/motion";
 import { ConfirmDialog } from "@/components/settings/confirm-dialog";
+import { AccountCard } from "@/components/settings/account-card";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SectionTitle } from "@/components/ui/section-title";
@@ -162,6 +163,8 @@ export function SettingsView() {
         title="Settings"
         description="Manage your data, back it up, and learn about the app."
       />
+
+      <AccountCard />
 
       {/* Your data */}
       <Reveal>

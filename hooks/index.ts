@@ -1,5 +1,6 @@
 export { useMediaQuery } from "@/hooks/use-media-query";
 export { useIsDesktop } from "@/hooks/use-is-desktop";
+export { useAuth } from "@/hooks/use-auth";
 export { useFavorites } from "@/hooks/use-favorites";
 export { useLocalStorage } from "@/hooks/use-local-storage";
 export { useMounted } from "@/hooks/use-mounted";
