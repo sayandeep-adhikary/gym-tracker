@@ -22,6 +22,7 @@ import { useFavorites } from "@/hooks/use-favorites";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import { useWorkoutHistory } from "@/hooks/use-workout-history";
 import { STORAGE_KEYS } from "@/lib/storage-keys";
+import { computeStreak, startOfWeek, toISODate, WEEK_LABELS } from "@/lib/streak";
 import { cn } from "@/lib/utils";
 import type { MuscleGroup, SplitPlanId } from "@/types";
 
@@ -40,36 +41,6 @@ const MuscleDistributionChart = dynamic(
     ),
   { ssr: false, loading: () => <Skeleton className="h-40 w-full" /> },
 );
-
-const WEEK_LABELS = ["M", "T", "W", "T", "F", "S", "S"];
-
-function toISODate(date: Date): string {
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${date.getFullYear()}-${month}-${day}`;
-}
-
-function startOfWeek(date: Date): Date {
-  const result = new Date(date);
-  const offset = (result.getDay() + 6) % 7; // Monday = 0
-  result.setDate(result.getDate() - offset);
-  result.setHours(0, 0, 0, 0);
-  return result;
-}
-
-function computeStreak(dates: Set<string>, resetDate: string | null): number {
-  const cursor = new Date();
-  if (!dates.has(toISODate(cursor))) cursor.setDate(cursor.getDate() - 1);
-  let streak = 0;
-  while (true) {
-    const iso = toISODate(cursor);
-    if (!dates.has(iso)) break;
-    if (resetDate && iso <= resetDate) break;
-    streak += 1;
-    cursor.setDate(cursor.getDate() - 1);
-  }
-  return streak;
-}
 
 function StatCard({
   icon: Icon,
