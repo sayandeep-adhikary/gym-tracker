@@ -66,7 +66,14 @@ export function authErrorMessage(error: unknown): string {
     case "auth/weak-password":
       return "Password should be at least 6 characters.";
     case "auth/popup-closed-by-user":
+    case "auth/cancelled-popup-request":
       return "Sign-in was cancelled.";
+    case "auth/popup-blocked":
+      return "Your browser blocked the sign-in popup. Allow popups and try again.";
+    case "auth/unauthorized-domain":
+      return "This site isn't authorized for sign-in. Add its domain in Firebase → Authentication → Settings → Authorized domains.";
+    case "auth/operation-not-allowed":
+      return "This sign-in method isn't enabled in your Firebase project.";
     case "auth/network-request-failed":
       return "Network error. Check your connection and try again.";
     default:
