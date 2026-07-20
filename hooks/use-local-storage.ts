@@ -48,12 +48,19 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
     (next: T | ((prev: T) => T)) => {
       setValue((prev) => {
         const resolved = next instanceof Function ? next(prev) : next;
-        try {
-          window.localStorage.setItem(key, JSON.stringify(resolved));
-          window.dispatchEvent(new CustomEvent(SYNC_EVENT, { detail: { key } }));
-        } catch {
-          // Ignore write errors (e.g. storage disabled or full).
-        }
+        // Persist and notify *after* this render commits. Dispatching the sync
+        // event synchronously here would run other subscribers' `read()` (a
+        // setState) while React is still rendering this component, which React
+        // flags as "Cannot update a component while rendering a different one"
+        // — and, in practice, corrupted rapid successive updates.
+        queueMicrotask(() => {
+          try {
+            window.localStorage.setItem(key, JSON.stringify(resolved));
+            window.dispatchEvent(new CustomEvent(SYNC_EVENT, { detail: { key } }));
+          } catch {
+            // Ignore write errors (e.g. storage disabled or full).
+          }
+        });
         return resolved;
       });
     },
