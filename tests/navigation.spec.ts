@@ -58,4 +58,10 @@ test.describe('Navigation', () => {
     await expect(page).toHaveURL(/\/$/);
     await navigation.expectActive('Home');
   });
+
+  test('the header "New workout" action starts a workout', async ({ page, navigation }) => {
+    await page.goto('/progress');
+    await navigation.newWorkoutButton.click();
+    await expect(page).toHaveURL(/\/workouts$/);
+  });
 });

@@ -1,6 +1,7 @@
 "use client";
 
-import { Bell, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { Logo } from "@/components/common/logo";
@@ -36,15 +37,16 @@ export function Header() {
         </h1>
 
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" aria-label="Notifications">
-            <Bell />
+          <Button asChild size="sm" className="hidden sm:inline-flex">
+            <Link href="/workouts">
+              <Plus />
+              New workout
+            </Link>
           </Button>
-          <Button size="sm" className="hidden sm:inline-flex">
-            <Plus />
-            New workout
-          </Button>
-          <Button size="icon" className="sm:hidden" aria-label="New workout">
-            <Plus />
+          <Button asChild size="icon" className="sm:hidden" aria-label="New workout">
+            <Link href="/workouts">
+              <Plus />
+            </Link>
           </Button>
         </div>
       </PageContainer>

@@ -17,15 +17,17 @@ export class NavigationPage {
   readonly desktopSidebar: Locator;
   readonly mobileBottomNav: Locator;
   readonly newWorkoutButton: Locator;
-  readonly notificationsButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
     // DOM order is stable: sidebar (inside <aside>) first, bottom nav last.
     this.desktopSidebar = page.locator('aside nav[aria-label="Primary"]');
     this.mobileBottomNav = page.locator('nav[aria-label="Primary"]').last();
-    this.newWorkoutButton = page.getByRole('button', { name: 'New workout' });
-    this.notificationsButton = page.getByRole('button', { name: 'Notifications' });
+    // Header "New workout" action (a link). Two responsive variants exist
+    // (text on sm+, icon-only below sm); target whichever is visible.
+    this.newWorkoutButton = page
+      .getByRole('link', { name: 'New workout' })
+      .filter({ visible: true });
   }
 
   /** The currently visible navigation (sidebar on desktop, tab bar on mobile). */
